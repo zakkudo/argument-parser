@@ -1,0 +1,13 @@
+language: node_js
+cache: yarn
+node_js:
+  - "8"
+  - "10"
+  - "11"
+install:
+    - yarn add --dev codecov snyk coveralls
+script:
+  - yarn cover
+  - cat coverage/lcov.info | ./node_modules/.bin/coveralls
+  - ./node_modules/.bin/codecov
+  - ./node_modules/.bin/snyk test
